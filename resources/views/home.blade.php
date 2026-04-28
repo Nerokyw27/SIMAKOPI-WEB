@@ -148,7 +148,8 @@
     </div>
 </section>
 
-{{-- Auth Modal Overlay --}}
+@guest
+{{-- Auth Modal Overlay (only for guests) --}}
 <div class="auth-overlay" id="auth-overlay">
     <div class="auth-backdrop" id="auth-backdrop"></div>
 
@@ -179,14 +180,15 @@
                 <button class="auth-tab active" id="tab-login-masuk" type="button">Masuk</button>
                 <button class="auth-tab" id="tab-login-daftar" type="button">Daftar</button>
             </div>
-            <form id="login-form" class="auth-form">
+            <form id="login-form" class="auth-form" method="POST" action="{{ route('login') }}">
+                @csrf
                 <div class="auth-field">
                     <label for="login-username">Username</label>
-                    <input type="text" id="login-username" placeholder="Kim_ming" autocomplete="username">
+                    <input type="text" id="login-username" name="username" placeholder="Kim_ming" autocomplete="username" required>
                 </div>
                 <div class="auth-field">
                     <label for="login-password">Password</label>
-                    <input type="password" id="login-password" placeholder="*********" autocomplete="current-password">
+                    <input type="password" id="login-password" name="password" placeholder="*********" autocomplete="current-password" required>
                 </div>
                 <button type="submit" class="auth-btn auth-btn--primary auth-btn--submit">Login</button>
             </form>
@@ -201,30 +203,31 @@
                 <button class="auth-tab" id="tab-register-masuk" type="button">Masuk</button>
                 <button class="auth-tab active" id="tab-register-daftar" type="button">Daftar</button>
             </div>
-            <form id="register-form" class="auth-form">
+            <form id="register-form" class="auth-form" method="POST" action="{{ route('register') }}">
+                @csrf
                 <div class="auth-field">
                     <label for="reg-nama">Nama Lengkap</label>
-                    <input type="text" id="reg-nama" placeholder="Kim Mingyu" autocomplete="name">
+                    <input type="text" id="reg-nama" name="full_name" placeholder="Kim Mingyu" autocomplete="name" required maxlength="25">
                 </div>
                 <div class="auth-field">
                     <label for="reg-username">Username</label>
-                    <input type="text" id="reg-username" placeholder="Kim_ming" autocomplete="username">
+                    <input type="text" id="reg-username" name="username" placeholder="Kim_ming" autocomplete="username" required maxlength="25">
                 </div>
                 <div class="auth-field">
                     <label for="reg-email">Email</label>
-                    <input type="email" id="reg-email" placeholder="kamu@email.com" autocomplete="email">
+                    <input type="email" id="reg-email" name="email" placeholder="kamu@email.com" autocomplete="email" required maxlength="30">
                 </div>
                 <div class="auth-field">
                     <label for="reg-alamat">Alamat</label>
-                    <input type="text" id="reg-alamat" placeholder="Jalan rumah kamu" autocomplete="street-address">
+                    <input type="text" id="reg-alamat" name="address" placeholder="Jalan rumah kamu" autocomplete="street-address" required maxlength="100">
                 </div>
                 <div class="auth-field">
                     <label for="reg-password">Password</label>
-                    <input type="password" id="reg-password" placeholder="*********" autocomplete="new-password">
+                    <input type="password" id="reg-password" name="password" placeholder="*********" autocomplete="new-password" required minlength="6">
                 </div>
                 <div class="auth-field">
                     <label for="reg-confirm">Konfirmasi Password</label>
-                    <input type="password" id="reg-confirm" placeholder="*********" autocomplete="new-password">
+                    <input type="password" id="reg-confirm" name="password_confirmation" placeholder="*********" autocomplete="new-password" required minlength="6">
                 </div>
                 <div class="auth-btn-group">
                     <button type="button" class="auth-btn auth-btn--primary auth-btn--cancel" id="btn-cancel-register">Cancel</button>
@@ -234,6 +237,7 @@
         </div>
     </div>
 </div>
+@endguest
 
 {{-- Toast Notification --}}
 <div id="toast-notification" class="toast-notification toast-notification--hidden" role="alert" aria-live="assertive">
@@ -282,84 +286,6 @@
 .toast-message { flex: 1; line-height: 1.4; }
 </style>
 <script>
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const navHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = target.offsetTop - navHeight;
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-            // Close mobile menu if open
-            document.getElementById('navbar-menu').classList.remove('active');
-            document.getElementById('mobile-menu-btn').classList.remove('active');
-        });
-    });
-
-    // Mobile menu toggle
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const navMenu = document.getElementById('navbar-menu');
-    mobileBtn.addEventListener('click', () => {
-        mobileBtn.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-
-    // Active nav link on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const navHeight = navbar.offsetHeight;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - navHeight - 100;
-            if (window.scrollY >= sectionTop) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) {
-                link.classList.add('active');
-            }
-        });
-    });
-
-    // Scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.feature-card, .about-image, .about-content, .cta-content').forEach(el => {
-        observer.observe(el);
-    });
-
     // ========== Toast Notification ==========
     const toast = document.getElementById('toast-notification');
     const toastIcon = document.getElementById('toast-icon');
@@ -367,14 +293,9 @@
     let toastTimer = null;
 
     const showToast = (type, message) => {
-        // Clear previous timer
         if (toastTimer) clearTimeout(toastTimer);
-
-        // Set type class
         toast.className = 'toast-notification';
         toast.classList.add('toast-notification--' + type);
-
-        // Set icon based on type
         const icons = {
             success: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3.5 3.5L17 9" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
             warning: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#f59e0b"/><path d="M12 7v5" stroke="white" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="16" r="1.2" fill="white"/></svg>`,
@@ -383,15 +304,20 @@
         };
         toastIcon.innerHTML = icons[type] || icons.info;
         toastMsg.textContent = message;
-
-        // Show
         toast.classList.remove('toast-notification--hidden');
-        // Auto-hide after 4s
         toastTimer = setTimeout(() => {
             toast.classList.add('toast-notification--hidden');
         }, 4000);
     };
 
+    // Show server-side toast
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.__TOAST__) {
+            showToast(window.__TOAST__.type, window.__TOAST__.message);
+        }
+    });
+
+    @guest
     // ========== Auth Modal Logic ==========
     const authOverlay = document.getElementById('auth-overlay');
     const modalWelcome = document.getElementById('modal-welcome');
@@ -417,15 +343,30 @@
     };
 
     // Show modal on page load
-    window.addEventListener('DOMContentLoaded', () => {
-        openAuth();
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.__SHOW_LOGIN__) {
+            showModal(modalLogin);
+            authOverlay.classList.remove('auth-overlay--hidden');
+            document.body.style.overflow = 'hidden';
+        } else if (!window.__TOAST__) {
+            openAuth();
+        }
+
+        // Show modal again if server returned validation error
+        @if($errors->any())
+            openAuth();
+            showModal(modalLogin);
+        @endif
     });
 
     // User icon opens modal
-    document.getElementById('user-icon-btn').addEventListener('click', (e) => {
-        e.preventDefault();
-        openAuth();
-    });
+    const userIconBtn = document.getElementById('user-icon-btn');
+    if (userIconBtn) {
+        userIconBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openAuth();
+        });
+    }
 
     // Welcome → Login
     document.getElementById('btn-to-login').addEventListener('click', () => showModal(modalLogin));
@@ -443,54 +384,68 @@
 
     // Cancel register → welcome
     document.getElementById('btn-cancel-register').addEventListener('click', () => showModal(modalWelcome));
+    @endguest
 
-    // Login form submit
-    document.getElementById('login-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const username = document.getElementById('login-username').value.trim();
-        const password = document.getElementById('login-password').value.trim();
-        if (!username || !password) {
-            showToast('warning', 'Please complete your account details');
-            return;
-        }
-        showToast('success', 'Login berhasil! (Demo - belum ada database)');
-        closeAuth();
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const navHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = target.offsetTop - navHeight;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            }
+            const navMenu = document.getElementById('navbar-menu');
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            if (navMenu) navMenu.classList.remove('active');
+            if (mobileBtn) mobileBtn.classList.remove('active');
+        });
     });
 
-    // Register form submit
-    document.getElementById('register-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const nama     = document.getElementById('reg-nama').value.trim();
-        const username = document.getElementById('reg-username').value.trim();
-        const email    = document.getElementById('reg-email').value.trim();
-        const alamat   = document.getElementById('reg-alamat').value.trim();
-        const password = document.getElementById('reg-password').value.trim();
-        const confirm  = document.getElementById('reg-confirm').value.trim();
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('navbar-menu');
+    if (mobileBtn && navMenu) {
+        mobileBtn.addEventListener('click', () => {
+            mobileBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
 
-        // 1. Incomplete fields
-        if (!nama || !username || !email || !alamat || !password || !confirm) {
-            showToast('warning', 'Please complete your account details');
-            return;
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
-
-        // 2. Format validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
-        if (!emailRegex.test(email) || !usernameRegex.test(username) || password.length < 6 || password !== confirm) {
-            showToast('error', 'Invalid format. Please try again!');
-            return;
-        }
-
-        // 3. Simulate "Username already exist" check (demo: username === 'admin')
-        const existingUsers = ['admin', 'simakopi', 'nawasena'];
-        if (existingUsers.includes(username.toLowerCase())) {
-            showToast('info', 'Username already exist');
-            return;
-        }
-
-        // 4. Success
-        showToast('success', 'Data saved. Account created successfully!');
-        setTimeout(() => showModal(modalLogin), 1800);
     });
+
+    // Scroll animations
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('animate-in');
+        });
+    }, observerOptions);
+    document.querySelectorAll('.feature-card, .about-image, .about-content, .cta-content').forEach(el => {
+        observer.observe(el);
+    });
+
+    // User dropdown toggle
+    const dropdownBtn = document.getElementById('user-dropdown-btn');
+    const dropdownMenu = document.getElementById('user-dropdown-menu');
+    if (dropdownBtn && dropdownMenu) {
+        dropdownBtn.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.user-dropdown')) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    }
 </script>
 @endpush
