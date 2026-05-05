@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="SIMAKOPI - Sistem Informasi Manajemen Operasional Kopi untuk Monitoring Produksi dan Penjualan Produk oleh PT Nawasena Group">
     <title>@yield('title', 'SIMAKOPI - Sistem Informasi Manajemen Operasional Kopi')</title>
 
@@ -27,6 +28,19 @@
 
     {{-- Footer --}}
     @include('layouts.footer')
+
+    {{-- Toast from session flash --}}
+    @if(session('toast'))
+    <script>
+        window.__TOAST__ = @json(session('toast'));
+    </script>
+    @endif
+
+    @if(session('show_login'))
+    <script>
+        window.__SHOW_LOGIN__ = true;
+    </script>
+    @endif
 
     @stack('scripts')
 </body>
