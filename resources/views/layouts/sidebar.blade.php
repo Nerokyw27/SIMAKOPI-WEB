@@ -26,7 +26,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     <span>Customer Data</span>
                 </a>
-<<<<<<< HEAD
                 <a href="{{ route('admin.catalogs.index') }}" class="sidebar-link {{ request()->routeIs('admin.catalogs.*') ? 'active' : '' }}">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                     <span>Catalog</span>
@@ -39,8 +38,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                     <span>Stock</span>
                 </a>
-=======
->>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
                 <a href="{{ route('admin.profile.show') }}" class="sidebar-link {{ request()->routeIs('admin.profile.*') ? 'active' : '' }}">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-2.761 3.134-5 7-5s7 2.239 7 5"/></svg>
                     <span>Profile</span>
@@ -59,13 +56,10 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                     <span>Dashboard</span>
                 </a>
-<<<<<<< HEAD
                 <a href="{{ route('customer.catalogs.index') }}" class="sidebar-link {{ request()->routeIs('customer.catalogs.*') ? 'active' : '' }}">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                     <span>Catalog</span>
                 </a>
-=======
->>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
                 <a href="{{ route('customer.profile.show') }}" class="sidebar-link {{ request()->routeIs('customer.profile.*') ? 'active' : '' }}">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-2.761 3.134-5 7-5s7 2.239 7 5"/></svg>
                     <span>Profile</span>

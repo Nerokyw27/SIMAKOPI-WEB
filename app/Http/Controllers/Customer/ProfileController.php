@@ -26,10 +26,7 @@ class ProfileController extends Controller
             'full_name' => 'required|string|max:25',
             'username' => 'required|string|max:25|unique:m_data_akun,username,' . $user->id,
             'email' => 'required|email|max:30|unique:m_data_akun,email,' . $user->id,
-<<<<<<< HEAD
             'address' => 'nullable|string|max:100',
-=======
->>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
             'district' => 'nullable|string|max:30',
             'city' => 'nullable|string|max:30',
             'province' => 'nullable|string|max:30',
@@ -37,11 +34,7 @@ class ProfileController extends Controller
             'profile_picture' => 'nullable|image|max:2048',
         ]);
 
-<<<<<<< HEAD
         $data = $request->only(['full_name', 'username', 'email', 'address', 'district', 'city', 'province', 'country']);
-=======
-        $data = $request->only(['full_name', 'username', 'email', 'district', 'city', 'province', 'country']);
->>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
 
         if ($request->filled('password')) {
             $request->validate(['password' => 'string|min:6']);

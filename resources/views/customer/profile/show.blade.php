@@ -31,13 +31,10 @@
             <span class="detail-value">{{ $user->email }}</span>
         </div>
         <div class="detail-row">
-<<<<<<< HEAD
             <span class="detail-label">Address</span>
             <span class="detail-value">{{ $user->address ?? '-' }}</span>
         </div>
         <div class="detail-row">
-=======
->>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
             <span class="detail-label">District</span>
             <span class="detail-value">{{ $user->district ?? '-' }}</span>
         </div>

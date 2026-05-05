@@ -32,13 +32,10 @@
             <label for="email">Email</label>
             <input type="email" id="email" name="email" class="form-input" value="{{ old('email', $user->email) }}" required maxlength="30">
         </div>
-<<<<<<< HEAD
         <div class="form-group">
             <label for="address">Address</label>
             <textarea id="address" name="address" class="form-input" rows="2" maxlength="100">{{ old('address', $user->address) }}</textarea>
         </div>
-=======
->>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
         <div class="form-actions">
             <a href="{{ route('supplier.profile.show') }}" class="btn btn--outline">Cancel</a>
             <button type="submit" class="btn btn--primary">Save</button>
