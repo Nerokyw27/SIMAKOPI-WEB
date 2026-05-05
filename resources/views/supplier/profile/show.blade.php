@@ -34,10 +34,13 @@
             <span class="detail-label">Phone Number</span>
             <span class="detail-value">{{ $user->phone_number ?? '-' }}</span>
         </div>
+<<<<<<< HEAD
         <div class="detail-row">
             <span class="detail-label">Address</span>
             <span class="detail-value">{{ $user->address ?? '-' }}</span>
         </div>
+=======
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
     </div>
     <div class="profile-actions">
         <a href="{{ route('supplier.profile.edit') }}" class="btn btn--primary">Edit Profile</a>

@@ -150,7 +150,11 @@
 
 @guest
 {{-- Auth Modal Overlay (only for guests) --}}
+<<<<<<< HEAD
 <div class="auth-overlay auth-overlay--hidden" id="auth-overlay">
+=======
+<div class="auth-overlay" id="auth-overlay">
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
     <div class="auth-backdrop" id="auth-backdrop"></div>
 
     {{-- Welcome Modal --}}
@@ -382,6 +386,11 @@
             showModal(modalLogin);
             authOverlay.classList.remove('auth-overlay--hidden');
             document.body.style.overflow = 'hidden';
+<<<<<<< HEAD
+=======
+        } else if (!window.__TOAST__) {
+            openAuth();
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
         }
 
         // Show modal again if server returned validation error
@@ -445,6 +454,7 @@
         });
     }
 
+<<<<<<< HEAD
     // Navbar scroll effect & ScrollSpy
     const navbar = document.getElementById('navbar');
     const sections = document.querySelectorAll('section[id]');
@@ -452,11 +462,17 @@
 
     window.addEventListener('scroll', () => {
         // Navbar background effect
+=======
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
+<<<<<<< HEAD
 
         // ScrollSpy logic for active nav line
         let current = '';
@@ -474,6 +490,8 @@
                 link.classList.add('active');
             }
         });
+=======
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
     });
 
     // Scroll animations

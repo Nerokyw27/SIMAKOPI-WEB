@@ -25,7 +25,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone_number')->nullable();
             $table->string('profile_picture')->nullable();
+<<<<<<< HEAD
             $table->string('address')->nullable();
+=======
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
             $table->string('city')->nullable();
             $table->string('country')->nullable();
             $table->string('district')->nullable();

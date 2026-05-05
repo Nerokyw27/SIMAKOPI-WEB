@@ -31,7 +31,11 @@ class ProfileController extends Controller
             'profile_picture' => 'nullable|image|max:2048',
         ]);
 
+<<<<<<< HEAD
         $data = $request->only(['full_name', 'username', 'email', 'phone_number', 'address']);
+=======
+        $data = $request->only(['full_name', 'username', 'email', 'phone_number']);
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
 
         if ($request->filled('password')) {
             $request->validate(['password' => 'string|min:6']);

@@ -86,7 +86,10 @@ class AuthController extends Controller
             'full_name' => $request->full_name,
             'username' => $request->username,
             'email' => $request->email,
+<<<<<<< HEAD
             'address' => $request->address,
+=======
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
             'password' => $request->password,
             'role' => 'customer',
         ]);

@@ -6,7 +6,10 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfile;
+<<<<<<< HEAD
 use App\Http\Controllers\Admin\ProductionController;
+=======
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
 use App\Http\Controllers\Supplier\DashboardController as SupplierDashboard;
 use App\Http\Controllers\Supplier\ProfileController as SupplierProfile;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboard;
@@ -46,6 +49,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
     Route::get('/customers/{customer}', [CustomerController::class, 'show'])->name('customers.show');
 
+<<<<<<< HEAD
     // Catalog management
     Route::get('/catalogs', [App\Http\Controllers\Admin\CatalogController::class, 'index'])->name('catalogs.index');
     Route::get('/catalogs/create', [App\Http\Controllers\Admin\CatalogController::class, 'create'])->name('catalogs.create');
@@ -66,6 +70,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
     // Stock management
     Route::get('/stocks', [App\Http\Controllers\Admin\StockController::class, 'index'])->name('stocks.index');
 
+=======
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
     // Profile
     Route::get('/profile', [AdminProfile::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [AdminProfile::class, 'edit'])->name('profile.edit');
@@ -100,8 +106,11 @@ Route::prefix('customer')->middleware(['auth', 'role:customer'])->name('customer
     Route::get('/profile', [CustomerProfile::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [CustomerProfile::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [CustomerProfile::class, 'update'])->name('profile.update');
+<<<<<<< HEAD
 
     // Catalog
     Route::get('/catalogs', [App\Http\Controllers\Customer\CatalogController::class, 'index'])->name('catalogs.index');
     Route::get('/catalogs/{catalog}', [App\Http\Controllers\Customer\CatalogController::class, 'show'])->name('catalogs.show');
+=======
+>>>>>>> 612bddbaa9f4a18412e012a7b92ffa32e7ddd4b6
 });
